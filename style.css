@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+}
+h1{
+    padding: 1rem;
+    font-size: 3rem;
+
+}
+.table {
+    display: grid;
+    justify-content: center;
+    
+}
+.table_board {
+    display: grid;
+    background-color: black;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    width: 50vw;
+    height: 70vh;
+}
+.board_data{
+    
+    background-color: white;
+    
+    
+}
