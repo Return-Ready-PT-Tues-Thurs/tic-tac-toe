@@ -32,3 +32,9 @@ h1{
     margin: 2rem auto;
     width: 50%;
 }
+
+@media only screen and (max-width: 900px) {
+    .table_board{
+        width: 100%;
+    }
+  }
