@@ -1,0 +1,176 @@
+/* Everything selector select every element ::before and ::after  */
+
+*, *::after, *::before {
+    box-sizing: border-box;
+  }
+  
+  .myGame {
+    text-align: center;
+    display: block;
+    font-family: Arial;
+    color: Blue;
+    text-shadow: 2px 2px orange;
+    font-size: 3rem;
+  }
+
+
+  /* selecting the root element and creating CSS variable autosizing 
+  mark size which is x and o will be 90% of cell its in */
+  :root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9);
+  }
+  
+  /* removes all margins on the page */
+  body {
+    margin: 0; 
+  }
+  
+  /* styles for game board 100vw and 100vh so board fills entire screen
+  justify and align will keep everything centered */
+  .board {
+    width: 100vw; 
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto)
+  }
+
+  /* using CSS variable in :root rule. --cell-size is already set to 100px for height and width */
+  .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 3px solid orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  /* cell of 1st, 2nd and 3rd child of the 9 cell div's. No boder on the top. */
+  .cell:first-child,
+  .cell:nth-child(2),
+  .cell:nth-child(3) {
+    border-top: none;
+  }
+  
+  /* the left 3 cells  of the 9 cell div's. No border. */
+  .cell:nth-child(3n + 1) {
+    border-left: none;
+  }
+  
+  /* the right 3 cells  of the 9 cell div's. No border. */
+  .cell:nth-child(3n + 3) {
+    border-right: none;
+  }
+  
+  /* the bottom 3 cells  of the 9 cell div's. No border. */
+  .cell:last-child,
+  .cell:nth-child(8),
+  .cell:nth-child(7) {
+    border-bottom: none;
+  }
+  
+  /* does not allow click on cells that already has x or o */
+  .cell.x,
+  .cell.circle {
+    cursor: not-allowed;
+  }
+  
+   
+  .cell.x::before,
+  .cell.x::after, .cell.circle::before {
+    background-color: blue;
+  }
+  
+  /* .board when it has the X class applied to it, .cells inside of that board. when hovering, I want the color to be blue */
+  .board.x .cell:not(.x):not(.circle):hover::before,
+  .board.x .cell:not(.x):not(.circle):hover::after,
+  .board.circle .cell:not(.x):not(.circle):hover::before {
+    background-color: blue;
+  }
+  
+  /* Whenever user hovers over click field, style will apply  */
+  /* Use :not selector. Styles are applied whenever :not(.x) and :not(.circle) Will be applied to all cells.   */
+  .cell.x::before,
+  .cell.x::after,
+  .board.x .cell:not(.x):not(.circle):hover::before,
+  .board.x .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+  }
+  
+  .cell.x::before,
+  .board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+  }
+  
+  .cell.x::after,
+  .board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+  }
+  
+  /* a border-radius of 50% creates circle, position is absolute to the grid cell. */
+  .cell.circle::before,
+  .cell.circle::after,
+  .board.circle .cell:not(.x):not(.circle):hover::before,
+  .board.circle .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: orange;
+  }
+  
+  .cell.circle::before,
+  .board.circle .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+  }
+  
+  .cell.circle::after,
+  .board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: White;
+  }
+  
+  .winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: blue;
+    font-size: 5rem;
+    flex-direction: column;
+
+  }
+  
+  .winning-message button {
+    font-size: 3rem;
+    color: blue;
+    background-color: white;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+  }
+  
+  .winning-message button:hover {
+    background-color: orange;
+    color: white;
+    border-color: white;
+  }
+  
+  .winning-message.show {
+    display: flex;
+  }
