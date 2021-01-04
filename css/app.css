@@ -1,0 +1,79 @@
+:root {
+    --midnightgreen: #174c54;
+    --orange: #ffa500;
+    --blue: #0000ff;
+    --black: black;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 54px;
+    text-transform: uppercase;
+    padding: 2vh;
+    margin: 50px;
+}
+.container {
+    padding: 40px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#gameboard {
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.box {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--black); 
+    font-size: 150px;
+    background-color: whitesmoke;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--midnightgreen);
+    color: white;
+    border-color: var(--midnightgreen);
+    box-shadow: var(--box-shadow);
+    font-size: 18px;
+    transition: 200ms transform;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    background-color: white;
+    color: var(--green);
+}
+
+div.box:hover {
+    cursor: pointer;
+    background: lightslategray;
+}
+
+.box[0] {
+    background: orange;
+}
+
+.X {
+    background: blue;
+}
