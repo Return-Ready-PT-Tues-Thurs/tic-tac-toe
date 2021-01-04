@@ -29,10 +29,10 @@ function checkWinner(){
             })
         if (isWin){
             if (currentPlayer == 0){
-                title.innerHTML = "Player 1 wins";
+                title.innerHTML = "Orange wins!";
             }
             else{
-                title.innerHTML = 'Player 2 wins';
+                title.innerHTML = 'Blue wins!';
             }
             endGame();
             break;
@@ -46,7 +46,8 @@ function color (event){
         if(currentPlayer == 0){
             let p1Score = event.target.id;
             player1.push(parseInt(p1Score)); 
-            event.target.style.backgroundColor ="black";
+            event.target.style.backgroundColor ="orange";
+            title.innerHTML = "Blue's turn"
             event.target.innerHTML = 'x';
             checkWinner();
             currentPlayer = 1;
@@ -55,8 +56,9 @@ function color (event){
         else {
             let p2Score = event.target.id;
             player2.push(parseInt(p2Score));
-            event.target.style.backgroundColor ="red";
+            event.target.style.backgroundColor ="blue";
             event.target.innerHTML = 'o';
+            title.innerHTML = "Orange's turn";
             checkWinner();
             currentPlayer = 0;
             
