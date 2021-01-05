@@ -4,6 +4,8 @@ let button = document.querySelector('.button');
 let player1 = [];
 let player2 = [];
 let currentPlayer = 0;
+let play = function(){document.getElementById("audio").play()}
+let end = function(){document.getElementById("winnerAudio").play()}
 
 button.addEventListener('click', reset);
 
@@ -31,9 +33,11 @@ function checkWinner(){
         if (isWin){
             if (currentPlayer == 0){
                 title.innerHTML = "Orange wins!";
+                end();
             }
             else{
                 title.innerHTML = 'Blue wins!';
+                end();
             }
             endGame();
             break;
@@ -55,6 +59,7 @@ function color (event){
             title.innerHTML = "Blue's turn"
             event.target.innerHTML = 'x';
             event.target.classList.add("board_data_style");
+            play();
             checkWinner();
             currentPlayer = 1;
            
@@ -66,6 +71,7 @@ function color (event){
             event.target.innerHTML = 'o';
             event.target.classList.add("board_data_style");
             title.innerHTML = "Orange's turn";
+            play();
             checkWinner();
             currentPlayer = 0;
             
@@ -91,6 +97,10 @@ function reset (){
     endGame();
     for (let i=0; i < board_data.length; i++){
         board_data[i].style.backgroundColor ="#dae0df";
+        if (board_data[i].classList.contains("board_data_style")) {
+            board_data[i].classList.remove("board_data_style");
+        
+          }
     }
     player1 = [];
     player2 = [];
