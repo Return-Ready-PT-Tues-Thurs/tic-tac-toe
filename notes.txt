@@ -1,0 +1,49 @@
+// function resetBoxColor() {
+//         var boxColor = document.querySelectorAll('.box');
+//             for (var i = 0; i < boxColor.length; i += 1) {
+//                 boxColor[i].style.backgroundColor = "#f5f5f5";
+// }
+
+// function resetBoxColor() {
+//     var boxes = document.querySelectorAll(".box");
+//     for (var i = 0; i < boxes.length; i += 1) {
+//       if( turns === 'X' ) {
+//            boxes[i].style.backgroundColor = oColor;
+//       } else {
+//            boxes[i].style.backgroundColor = xColor;
+//       }
+//     }
+// }
+
+// function resetBackGround(id){
+//     let elem = document.getElementById(id);
+//     let color = "#f5f5f5";
+//        elem.style.background = color;
+// }
+
+restartBtn.addEventListener('click', restart);
+restart();
+drawboard();
+
+
+
+    // spaces[index] === null; {
+    //     color = "#f5f5f5";
+    //     elem.style.background = color;
+    // };
+
+
+
+//  class = box NodeList
+    document.querySelectorAll('.box');
+
+NodeList(9) [div#0.box, div#1.box, div#2.box, div#3.box, 
+div#4.box, div#5.box, div#6.box, div#7.box, div#8.box]
+
+// 
+
+let boxBackground = document.querySelectorAll('.box'); {
+    
+
+}
+boxBackground[1].style.background = color;
