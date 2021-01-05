@@ -1,14 +1,16 @@
 * {
     box-sizing: border-box;
+    font-family: 'Redressed', cursive;
 }
 body {
     text-align: center;
+    
 
 }
 h1{
     padding: 1rem;
     font-size: 3rem;
-    color: rgb(192, 88, 88);
+    color: #52489C;
 
 }
 .table {
@@ -19,7 +21,7 @@ h1{
 }
 .table_board {
     display: grid;
-    background-color: black;
+    background-color: #E6FDFF;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 5px;
@@ -27,7 +29,7 @@ h1{
     height: 65vh;
 }
 .board_data{
-    background-color: white;
+    background-color: #dae0df;
 }
 
 .board_data_style{
@@ -37,12 +39,16 @@ h1{
 }
 .button {
     border-radius: 10px;
+    border: 0;
     font-size: 1.5rem;
-    background-color: rgb(167, 173, 211);
+    background-color: #E6FDFF;
     padding: .5rem;
     margin: 2rem auto;
     width: 50%;
+    color: #52489C;
+    font-family: 'Roboto', sans-serif;;
 }
+.button:focus {outline:0;}
 
 @media (max-width: 900px) {
     .table_board{
