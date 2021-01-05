@@ -10,6 +10,7 @@ const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
 statusDisplay.innerHTML = currentPlayerTurn();
 
+/* Determine win conditions via array */
 const winningConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -21,6 +22,7 @@ const winningConditions = [
     [2, 4, 6]
 ];
 
+/* Activate cell clicked on */
 function handleCellPlayed(clickedCell, clickedCellIndex) {
     if (currentPlayer == "BLUE") {
         gameState[clickedCellIndex] = currentPlayer;
@@ -31,11 +33,13 @@ function handleCellPlayed(clickedCell, clickedCellIndex) {
     }
 }
 
+/* Determine which player's turn it is */
 function handlePlayerChange() {
     currentPlayer = currentPlayer === "BLUE" ? "ORANGE" : "BLUE";
     statusDisplay.innerHTML = currentPlayerTurn();
 }
 
+/* Determine if round has been won */
 function handleResultValidation() {
     let roundWon = false;
     for (let i = 0; i <= 7; i++) {
@@ -52,12 +56,14 @@ function handleResultValidation() {
         }
     }
 
+    /*Display winner */
     if (roundWon) {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         return;
     }
 
+    /* Display if round is a draw */
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
         statusDisplay.innerHTML = drawMessage();
@@ -68,6 +74,7 @@ function handleResultValidation() {
     handlePlayerChange();
 }
 
+/* Get cell clicked */
 function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
@@ -80,6 +87,7 @@ function handleCellClick(clickedCellEvent) {
     handleResultValidation();
 }
 
+/* Restart game */
 function handleRestartGame() {
     gameActive = true;
     currentPlayer = "BLUE";
