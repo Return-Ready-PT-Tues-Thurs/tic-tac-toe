@@ -18,6 +18,7 @@ const winningValue = [
     [2,5,8]
 ];
 function checkWinner(){
+
     for ( let i=0; i<winningValue.length; i++){
           const isWin =  winningValue[i].every(function(positionInWinningCombination){
               if(currentPlayer == 0){
@@ -39,6 +40,10 @@ function checkWinner(){
         }
         
     }
+   const isTie = checkTie();
+   if(isTie){
+    changeTextToIsTie();
+   }
 }
 
 function color (event){
@@ -49,6 +54,7 @@ function color (event){
             event.target.style.backgroundColor ="orange";
             title.innerHTML = "Blue's turn"
             event.target.innerHTML = 'x';
+            event.target.classList.add("board_data_style");
             checkWinner();
             currentPlayer = 1;
            
@@ -58,6 +64,7 @@ function color (event){
             player2.push(parseInt(p2Score));
             event.target.style.backgroundColor ="blue";
             event.target.innerHTML = 'o';
+            event.target.classList.add("board_data_style");
             title.innerHTML = "Orange's turn";
             checkWinner();
             currentPlayer = 0;
@@ -91,6 +98,12 @@ function reset (){
     startGame();
 }
 
+function checkTie(){
+    const isTie = [...board_data].every(({innerText}) => innerText.length !==0);
+    return isTie;
+}
+function changeTextToIsTie(){
+    title.innerText = "It's tied, try again"
+}
 
 startGame();
-
