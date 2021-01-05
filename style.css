@@ -24,16 +24,24 @@ h1{
     background-color: #E6FDFF;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 5px;
+    gap: 7px;
     width: 50vw;
     height: 65vh;
 }
 .board_data{
+    display: flex;
     background-color: #dae0df;
+    transition: all 0.35s ease-in-out;
+    justify-content: center;
+    color: white;
 }
 
-.board_data_style{
+  .board_data:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 
+.board_data_style{
     font-size: 7rem;
     color: white;
 }
