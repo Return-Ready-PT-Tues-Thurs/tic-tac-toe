@@ -4,8 +4,6 @@ const restartBtn = document.getElementById('restartB');
 const spaces = [];
 const O_TEXT = "O";
 const X_TEXT = "X";
-const O_COLOR = "#ffa500";
-const X_COLOR = "#0000ff";
 let currentPlayer;
 
 const drawboard = () => {
@@ -37,8 +35,7 @@ const boxClicked = (e) => {
         if(playerHasWon()){
             playText.innerText = `${currentPlayer} has won!`;
             return;
-        }
-        
+        }       
         changeBackGround(id, currentPlayer);
         currentPlayer = currentPlayer === O_TEXT ? X_TEXT : O_TEXT;
     }
@@ -58,19 +55,6 @@ function changeBackGround(id, currentPlayer){
      elem.style.background = color;
   }
 }
-
-// document.getElementById(1).style.backgroundColor = X_COLOR
-// function changeColor(id){
-//     if (box.innerHTML ===''){
-//       if (turns ==='X'){
-//         turns='O';
-//         box.style.backgroundColor=X_COLOR;
-//       } else {
-//         turns='X';
-//         box.style.backgroundColor=O_COLOR;
-//       }
-//     }
-//   }
 
 const playerHasWon = () => {
     if(spaces[0] === currentPlayer){
@@ -113,7 +97,7 @@ const playerHasWon = () => {
     }
 };
 
-const restart = () => {
+function restart() {
     spaces.forEach((space, index) => {
         spaces[index] = null;
     });
@@ -122,8 +106,10 @@ const restart = () => {
     });
     playText.innerText = `Let's Play!`;
     currentPlayer = X_TEXT;
+
 }
 restartBtn.addEventListener('click', restart);
 restart();
+// changeBackGround();
 drawboard(); 
 

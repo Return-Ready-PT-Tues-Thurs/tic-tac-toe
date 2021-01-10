@@ -42,8 +42,40 @@ div#4.box, div#5.box, div#6.box, div#7.box, div#8.box]
 
 // 
 
-let boxBackground = document.querySelectorAll('.box'); {
-    
+    boxBackground[1].style.background = color;
+    boxBackground[2].style.background = color;
+    boxBackground[3].style.background = color;
+    boxBackground[4].style.background = color;
+    boxBackground[5].style.background = color;
+    boxBackground[6].style.background = color;
+    boxBackground[7].style.background = color;
+    boxBackground[8].style.background = color;
+
+
+
+function changeBackGround(id, currentPlayer){
+  let elem = document.getElementById(id);
+  let color = "";
+  let orange = "#f5f5f5"; 
+  let blue = "#f5f5f5";
+  
+  if(currentPlayer === O_TEXT){
+     color = orange;
+     elem.style.background = color;
+  } else if(currentPlayer === X_TEXT){
+     color = blue; 
+     elem.style.background = color;
+  }
+}
+
+function resetBackGround(id, currentPlayer){
+    let 
+
+
 
 }
-boxBackground[1].style.background = color;
+
+
+    let elem = document.getElementById(1);
+    let color = "f5f5f54";
+    elem.style.background = color;
