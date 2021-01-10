@@ -1,17 +1,41 @@
-const statusDisplay = document.querySelector('.game--status');
 
-let gameActive = true;
 let currentPlayer = "BLUE";
-let gameState = ["", "", "", "", "", "", "", "", ""];
+let board = ["", "", "", "", "", "", "", "", ""];
+let playGame = true;
 
-const winningMessage = () => `Player ${currentPlayer} has won!`;
-const drawMessage = () => `Game ended in a draw!`;
-const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+const winner = () => `Player ${currentPlayer} has won!`;
+const isDraw = () => `Game ended in a draw!`;
+const playersTurn = () => `It's ${currentPlayer}'s turn`;
 
-statusDisplay.innerHTML = currentPlayerTurn();
+const message = document.querySelector(".game--status");
+message.innerHTML = playersTurn();
+
+document.querySelectorAll(".cell").forEach(cell => cell.addEventListener("click", getCell));
+
+
+/* Activate cell clicked on */
+function cellClicked(cell, click) {
+    if (currentPlayer == "BLUE") {
+        board[click] = currentPlayer;
+        cell.style.backgroundColor = "blue";
+    } else {
+        board[click] = currentPlayer;
+        cell.style.backgroundColor = "orange";
+    }
+}
+
+/* Determine which player's turn it is */
+function changePlayer() {
+    if (currentPlayer === "BLUE") {
+        currentPlayer = "ORANGE";
+    } else {
+    currentPlayer = "BLUE";
+    }
+    message.innerHTML = playersTurn();
+}
 
 /* Determine win conditions via array */
-const winningConditions = [
+const winningBoard = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -22,81 +46,64 @@ const winningConditions = [
     [2, 4, 6]
 ];
 
-/* Activate cell clicked on */
-function handleCellPlayed(clickedCell, clickedCellIndex) {
-    if (currentPlayer == "BLUE") {
-        gameState[clickedCellIndex] = currentPlayer;
-        clickedCell.style.backgroundColor = "blue";
-    } else {
-        gameState[clickedCellIndex] = currentPlayer;
-        clickedCell.style.backgroundColor = "orange";
-    }
-}
-
-/* Determine which player's turn it is */
-function handlePlayerChange() {
-    currentPlayer = currentPlayer === "BLUE" ? "ORANGE" : "BLUE";
-    statusDisplay.innerHTML = currentPlayerTurn();
-}
-
 /* Determine if round has been won */
-function handleResultValidation() {
-    let roundWon = false;
+function gameStatus() {
+    let win = false;
     for (let i = 0; i <= 7; i++) {
-        const winCondition = winningConditions[i];
-        let a = gameState[winCondition[0]];
-        let b = gameState[winCondition[1]];
-        let c = gameState[winCondition[2]];
-        if (a === '' || b === '' || c === '') {
+        const winCondition = winningBoard[i];
+        let a = board[winCondition[0]];
+        let b = board[winCondition[1]];
+        let c = board[winCondition[2]];
+        if (a === "" || b === "" || c === "") {
             continue;
         }
         if (a === b && b === c) {
-            roundWon = true;
+            win = true;
             break
         }
     }
 
+
     /*Display winner */
-    if (roundWon) {
-        statusDisplay.innerHTML = winningMessage();
-        gameActive = false;
+    if (win) {
+        message.innerHTML = winner();
+        playGame = false;
         return;
     }
 
     /* Display if round is a draw */
-    let roundDraw = !gameState.includes("");
-    if (roundDraw) {
-        statusDisplay.innerHTML = drawMessage();
-        gameActive = false;
+    let draw = !board.includes("");
+    if (draw) {
+        message.innerHTML = isDraw();
+        playGame = false;
         return;
     }
 
-    handlePlayerChange();
+    changePlayer();
 }
 
 /* Get cell clicked */
-function handleCellClick(clickedCellEvent) {
-    const clickedCell = clickedCellEvent.target;
-    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
+function getCell(cellEvent) {
+    const cell = cellEvent.target;
+    const click = parseInt(cell.getAttribute("data-cell-index"));
 
-    if (gameState[clickedCellIndex] !== "" || !gameActive) {
+    if (board[click] !== "" || !playGame) {
         return;
     }
 
-    handleCellPlayed(clickedCell, clickedCellIndex);
-    handleResultValidation();
+    cellClicked(cell, click);
+    gameStatus();
 }
+
+document.querySelector(".game--restart").addEventListener("click", restartGame);
 
 /* Restart game */
-function handleRestartGame() {
-    gameActive = true;
+function restartGame() {
+    playGame = true;
     currentPlayer = "BLUE";
-    gameState = ["", "", "", "", "", "", "", "", ""];
-    statusDisplay.innerHTML = currentPlayerTurn();
-    document.querySelectorAll('.cell').forEach(cell => cell.style.backgroundColor = "white");
-    document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+    board = ["", "", "", "", "", "", "", "", ""];
+    message.innerHTML = playersTurn();
+    document.querySelectorAll(".cell").forEach(cell => cell.style.backgroundColor = "white");
+    document.querySelectorAll(".cell").forEach(cell => cell.innerHTML = "");
     ;
 }
-
-document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
-document.querySelector('.game--restart').addEventListener('click', handleRestartGame);
