@@ -106,7 +106,7 @@ const handleCellClick = (e) => {
       updategamestatus();
     } else {
       classList.add('o');
-      updategamestatus  
+      updategamestatus(); 
     }
 
 };
