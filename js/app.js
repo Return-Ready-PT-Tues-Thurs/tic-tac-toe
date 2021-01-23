@@ -6,7 +6,7 @@ const O_TEXT = "O";
 const X_TEXT = "X";
 let currentPlayer;
 
-const drawboard = () => {
+const drawBoard = () => {
     boxes.forEach((box, index) => {
         let styleString = '';
         if (index <3) {
@@ -109,7 +109,7 @@ function restart() {
 
 }
 restartBtn.addEventListener('click', restart);
+
 restart();
-// changeBackGround();
-drawboard(); 
+drawBoard(); 
 
