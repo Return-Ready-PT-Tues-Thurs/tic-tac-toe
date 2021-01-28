@@ -106,8 +106,8 @@ function restart() {
     });
     playText.innerText = `Let's Play!`;
     currentPlayer = X_TEXT;
-
 }
+
 restartBtn.addEventListener('click', restart);
 
 restart();

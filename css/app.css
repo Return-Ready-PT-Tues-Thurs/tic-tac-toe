@@ -24,7 +24,7 @@ h1 {
 
 .container {
     padding: 40px;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,10 +68,7 @@ button:hover {
 
 div.box:hover {
     cursor: pointer;
-    background: lightslategray;
+    background: var(--midnightgreen);
 }
 
-div.box:visited {
-    cursor: pointer;
-    background: red;
-}
+
