@@ -33,7 +33,8 @@ const boxClicked = (e) => {
         e.target.innerText = currentPlayer;
       
         if(playerHasWon()){
-            playText.innerText = `${currentPlayer} has won!`;
+            playText.innerText = `${currentPlayer} WON!`;
+            changeBackGround(id, currentPlayer);
             return;
         }       
         changeBackGround(id, currentPlayer);
@@ -59,35 +60,28 @@ function changeBackGround(id, currentPlayer){
 const playerHasWon = () => {
     if(spaces[0] === currentPlayer){
         if(spaces[1] === currentPlayer && spaces[2] === currentPlayer) {
-            console.log(`${currentPlayer} wins up top`)
             return true;
         }
         if(spaces[3] === currentPlayer && spaces[6] === currentPlayer) {
-            console.log(`${currentPlayer} wins on the left`)
             return true;
         }
         if(spaces[4] === currentPlayer && spaces[8] === currentPlayer) {
-            console.log(`${currentPlayer} wins diagnally`)
             return true;
         }
     }
     if(spaces[8] === currentPlayer){
         if(spaces[2] === currentPlayer && spaces[5] === currentPlayer) {
-            console.log(`${currentPlayer} wins on the right`)
             return true;
         }
         if(spaces[6] === currentPlayer && spaces[7] === currentPlayer) {
-            console.log(`${currentPlayer} wins on the bottom`)
             return true;
         }
     }
     if(spaces[4] === currentPlayer){
         if(spaces[1] === currentPlayer && spaces[7] === currentPlayer) {
-            console.log(`${currentPlayer} wins vertically in the middle`)
             return true;
         }        
         if(spaces[3] === currentPlayer && spaces[5] === currentPlayer) {
-            console.log(`${currentPlayer} wins horizontally in the middle`)
             return true;
         }    
     } if(spaces[6] === currentPlayer){
@@ -112,4 +106,3 @@ restartBtn.addEventListener('click', restart);
 
 restart();
 drawBoard(); 
-
